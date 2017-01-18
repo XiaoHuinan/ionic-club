@@ -1,0 +1,28 @@
+<ion-view view-title="注销">
+    <ion-content bindonce="account" sytle="background:#f4f4f4;">
+        <ion-list>
+            <ion-item class="item divider"></ion-item>
+            <div class="item item-avatar">
+                <img bo-src="account.avatar_url" />
+                <h2 bo-bind="account.loginname"></h2>
+                <p>积分:
+                   <span bo-bind="account.score"></span>
+                </p>
+            </div>
+            
+            <!-- MM not mm -->
+            <ion-item>最近登录 <span bo-bind="account.create_at|date:'yyyy-MM-dd'"></span></ion-item> 
+            <ion-item>注册时间 <span bo-bind="account.create_at|date:'yyyy-MM-dd'"></span></ion-item>
+            <ion-item><button ng-click="logout()" class="button button-block button-dark">注销</button></ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+
+<!-- account = {
+    avartar_url: "",
+    loginname: "",
+    score: "",
+    create-at: ""
+}
+ -->

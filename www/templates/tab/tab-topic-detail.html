@@ -1,0 +1,100 @@
+<!-- ion-nav-buttons加到父亲的nav-bar上 --> 
+<!-- {{topicDetail.title}} -->
+<ion-view view-title="&nbsp;">
+     <!-- side -->
+    <ion-nav-buttons side="right">
+        <!-- view change and the button dispaly -->
+        <!-- ng-disabled="collectData.accesstoken==''"  -->
+        <button class="button button-icon ion-android-star-outline" ng-if= "collectData.accesstoken!==''" ng-click="collect()"></button>
+         <!-- ng-disabled="collectDeData.accesstoken==''"  -->
+        <button class="button button-icon ion-android-star" ng-if= "deCollectData.accesstoken!==''"  ng-click="deCollect()"></button>
+        &nbsp;&nbsp;
+        <button class="button button-icon ion-share" ng-disabled="collectData.accesstoken==''" ng-click="share()">
+        </button>
+    </ion-nav-buttons>
+
+    <!-- +list card+item-avatar+item-body+item-divider  -->
+    <!-- why topicDetail? -->
+    <ion-content class="padding" bindonce="topicDetail" lazy-scroll>
+        <div class="list card" id="topic-content">
+            <div class="item item-avatar">
+                <!-- why bo ?-->
+                <img bo-src="topicDetail.author.avatar_url" />
+                <a bo-href="'#/user/'+topicDetail.author.loginname" class="positive" bo-bind="topicDetail.author.loginname"></a>
+                <p>发布
+                    <span class="balanced" am-time-ago="topicDetail.create_at"></span>
+                最后回复
+                   <span class="balanced" am-time-ago="topicDetail.last_reply_at"></span>
+            </div>
+
+            <div class="item item-body" bo-html="topicDetail.content | link">
+                <p>
+                    <a class="subdued"><span bo-bind="topicDetail.visit_count">浏览</span></a>
+                    <a href="" class="subdued"><span bo-bind="topicDetail.reply_count">评论</span></a>
+                </p>
+            </div>
+            
+            <!-- not bindonce? -->
+            <div class="list">
+                <div class="comment item item-avatar" ng-repeat="reply in topicDetail.replies">
+                    <img class="avatar" bo-src="reply.author.avatar_url" />
+                    <a bo-href="'#/user/'+reply.author.loginname" class="positive" bo-bind="reply.author.loginname"></a>
+                  
+                    <div class="reply">
+                        <!-- button-icon;;b`utton -->
+                        <!-- icon big -->
+                        <button class="button-icon ion-thumbsup" ng-click="replyUp(reply.id)"></button>
+                        <button class="button-icon ion-chatbox-working" ng-cli`ck="reReply(reply.id, reply.author.loginname)"></button>
+                    </div>
+                    <div bo-html="reply.content|link"></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    
+    <ion-footer-bar align-title="left" class="bar-light reply-new item-input-inset">
+        <label class="item-input-wrapper">
+            <!-- ng-model -->
+            <input type="text" placeholder="请登录后回复" ng-disabled="replyData.accesstoken==''" ng-model="replyData.content"/>
+        </label>  <!--  == ==   = -->
+        <button class="button button-clear" ng-click="saveReply()" ng-disabled="replyData.accesstoken==''||replyData.content==''">提交</button>    <!-- ng-model every time -->
+    </ion-footer-bar>
+</ion-view>
+
+
+
+<!-- topicDetail = {
+    author: {
+       avatar_url: "",
+       loginname: ""
+    },
+    author_id
+    last_reply_at: "",
+    create_at: "",
+    visit_count: "",
+    replay_count: "'"
+    content: "",
+    replies: array
+    good
+    tab
+    title
+},
+
+reply = {
+    author: {
+        avatar_url: "",
+        loginname: "'"
+    },
+    content: "",
+    ID: ""
+}
+
+replyData = {
+    accesstoken: "",
+    content:""
+}
+
+collectData = {
+    accesstoken: "",
+    
+}

@@ -1,0 +1,38 @@
+<ion-view view-title="个人中心" cache-view="false">
+    <!-- where account??>-->
+    <ion-content bindonce="account" style="background:'#f4f4f4'">
+        <ion-list>
+            <ion-item class="item-divider"></ion-item>
+            <a href="#/tab/account/detail" class="item item-avatar item-icon-right">
+                <!-- not need vary every second -->
+                <img bo-src="account.avatar_url" />
+                <h2 bo-bind="account.loginname"></h2>
+                <p>积分: <span bo-bind="account.score"></span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <div class="button-bar bar-light">
+                <!-- button-icon icon -->
+                <button class="button icon ion-ios-star-outline" ng-click="openModal(1)"> 收藏</button>
+                <button class="button icon ion-ios-email-outline" ng-click="openModal(2)"> 消息</button>
+            </div>
+            <div class="button-bar bar-light">
+                <button class="button icon ion-ios-chatbubble-outline" ng-click="openModal(3)"> 创建的话题</button>
+                <button class="button icon ion-ios-chatboxes-outline" ng-click="openModal(4)"> 参与的话题</button>
+            </div>
+            <div class="item item-divider">关于</div>
+            <div class="item">当前版本<span class="item-note">1.0.0</span></div>
+            <div class="item item">作者<span class="item-note">1010338714@qq.com</span></div>
+            <div class="item" onclick="window.open('http://ionichina.com/about','blank','location=yes')">关于IconicClub社区</div>
+            <!-- yes is out window ?-->
+            <br />
+            <div class="text-center">&copy;XiaoHuinan</div>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+<!-- account = {
+    avartar_url: "",
+    loginname: "",
+    score: ""
+}
+ -->
