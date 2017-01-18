@@ -1,0 +1,36 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-dark">
+        <h1 class="title">新建话题</h1>
+        <button class="button button-clear" ng-click="modalAddTopic.hide()">取消</button>
+    </ion-header-bar>
+    <ion-content>
+        <form><!--    ?? -->
+            <div class="list">  <!--  div not label -->
+                <div class="item item-input item-select">
+                    <div class="input-label">类别</div>
+                    <!-- 显示label传value -->
+                    <select ng-model="topicData.tab" ng-options="tab.value as tab.label for tab in tabs">  <!--  as??
+                        defalut -->
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+
+                <div class="item item-input item-stacked-label">
+                    <div class="input-label">标题</div>
+                    <!-- Title? -->
+                    <input type="text" ng-model="topicData.title" required placeholder="必填" />
+                </div>
+
+                <div class="item item-input item-stacked-label">
+                    <div class="input-label">内容</div>
+                    <!-- name? -->
+                    <textarea name="content" rows="5" ng-model="topicData.content" placeholder="必填"></textarea>
+                </div>
+                <!-- button must so the button-dark -->
+                <div class="item">
+                    <button type="submit" ng-click="createTopic()" class="button button-dark button-block">提交</button>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

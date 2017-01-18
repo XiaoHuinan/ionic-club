@@ -1,0 +1,17 @@
+ <!--同一状态下有多个ion-nav-view,因此需要给它们设置name属性。并在配制路由的时候对应状态和渲染视图-->
+ <!-- href:选项卡对应的状态 -->
+ <!-- first index side menu, then tab/topic so tab.html to sidemenu nav view, last??  -->
+ <!-- no ion-view -->
+ <!-- href and then nav-view change is the template-->
+<ion-tabs class="tabs-color-active-positive">
+    <!-- icon-on icon-off -->
+    <ion-tab icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/topics">
+         <!-- name? -->
+         <!-- how work ??-->
+        <ion-nav-view name="topic">111</ion-nav-view>
+    </ion-tab>
+    <!-- badage="badages.message" badage-style="badage-assertive"  -->
+    <ion-tab icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/login">
+        <ion-nav-view name="account"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

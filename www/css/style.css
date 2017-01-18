@@ -1,0 +1,40 @@
+
+/*css要开始自己写了，感觉很多都已经给忘记了*/
+.tab {
+    display: inline;
+    float: left;
+    border-radius: 6px;
+}
+
+
+/*glup watch*/
+.author {
+    float: left;
+    display: inline;
+    color: #999;
+}
+
+.ago-time {
+    float: right;
+    display: inline;
+    color: #999;
+}
+
+a {
+    text-decoration: none;
+}
+
+.comment > a {
+    clear: both;
+}
+.reply {
+    float: right;
+}
+
+
+/*有问题看源码来*/
+.comment p{
+    overflow: visible;
+    white-space: normal;
+    float: left;
+}

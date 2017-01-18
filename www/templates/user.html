@@ -1,0 +1,46 @@
+<ion-view view-title="用户详情">
+    <ion-content bindonce="account">
+        <ion-list>
+            <ion-item class="item-divider"></ion-item>
+            <ion-item class="item-avatar">
+                <img bo-src="account.avatar_url" />
+                <h2 bo-bind="account.loginname"></h2>
+                <p>积分: <span bo-bind="account.score"></span></p>
+            </ion-item>
+            <ion-item>最近登录 <span bo-bind="account.create_at|date:'yyyy-MM-dd'"></span>
+            </ion-item>
+            <ion-item>注册时间 <span bo-bind="account.create_at|date:'yyyy-MM-dd'"></span>
+            </ion-item>
+
+            <ion-item class="item-divider">最近创建的话题
+            </ion-item>
+            <!-- == =!!! -->
+            <div ng-if="account.recent_topics.length==0">暂无数据</div>
+           <!-- bindonce? -->
+            <a class="item item-avatar" ng-repeat="topic in account.recent_topics" bo-href="'#/tab/topic/'+topic.id">
+                <img bo-src="account.avatar_url" />
+                <h2 bo-bind="topic.title"></h2>
+                <p am-time-ago="topic.last_reply_at"></p>
+            </a>
+           
+            <ion-item class="item-divider">最近参与的话题</ion-item>
+            <div ng-if="account.recent_replies.length==0">暂无数据</div>
+                       <!-- bindonce?? -->
+                    <!-- topic not topicDetail -->
+            <a class="item item-avatar" ng-repeat="topic in account.recent_replies" bo-href="'#/tab/topic/'+topic.id">
+                <img bo-src="account.avatar_url" />
+                <h2 bo-bind="topic.title"></h2>
+                <p am-time-ago="topic.last_reply_at"></p>
+            </a>  
+            
+            <ion-item class="item-divider">最近收藏</ion-item>
+            <ion-item ng-if="account.collect_topics.length==0">暂无收藏</ion-item>
+            <a class="item item-avatar" ng-repeat="topic in account.collect_topics" bo-href="'#/topic/'+topic.id">
+                <img bo-src="account.avatar_url" />
+                <h2 bo-bind="topic.title"></h2>
+                <!-- ??collect -->
+                <p am-time-ago="topic.last_reply_at"></p>
+            </a> 
+        </ion-list>
+    </ion-content>
+</ion-view>

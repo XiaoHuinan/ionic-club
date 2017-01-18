@@ -1,0 +1,28 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-dark">
+        <h1 class="title">收藏</h1>
+        <!-- not () -->
+        <button class="button button-clear" ng-click="modal1.hide()">取消</button>
+    </ion-header-bar>
+    <!-- bindonce? -->
+    <ion-content bindonce="account">
+        <!-- = == -->
+        <!-- <div ng-if="account.collect_topics.length==0" class="button button-block">暂无收藏
+        </div> -->
+        <ion-list>
+            <!-- bindonce? -->
+            <!-- item icon form the i -->
+            <!-- remove bindonce -->
+            <ion-item class="item-divider" ng-if="account.collect_topics.length==0" style="text-align: center;">暂无数据</ion-item>
+            <ion-item class="item-avatar item-icon-right" bindonce ng-repeat="topic in account.collect_topics">
+                <img bo-src="account.avatar_url" />
+                <a bo-href="'#/tab/topic/' + topic.id" bo-bind="topic.title"></a>
+                <p am-time-ago="topic.last_reply_at"></p>
+                <!-- ion -->
+                <i class="icon ion-ios-trash-outline" ng-click="deCollect(topic.id)"></i>
+            </ion-item>
+            <!-- <ion-item ng-click="modal1.hide()"></ion-item> -->
+        </ion-list>
+        <!-- <div ng-click="modal1.hide()"></div> -->
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,49 @@
+<ion-view view-title="Ionic 中文论坛">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-compose" ng-disabled="topicData.accesstoken==''" ng-click="openModal()"></button>
+    </ion-nav-buttons>
+
+    <ion-content srcoll="true" lazy-scroll>
+        <!-- 下拉 -->
+        <ion-refresher pull-text="加载..." on-refresh="doRefresh()"></ion-refresher>
+        <!-- 中间列表 -->
+        <div class="list">
+            <a class="item item-avatar" bindonce ng-repeat="topic in topics" bo-href="'#/tab/topic/'+topic.id">
+                <img lazy-src="{{topic.author.avatar_url}}"/>
+                <h2 bo-bind="topic.title"></h2>
+                <!-- ng-if"" -->
+                <h3 ng-if="!topic.top&&!topic.good" style="margin-top:5px;" class="light balanced-bg balanced-border tab" bo-bind="topic.tab | tabName"></h3>
+                <h3 ng-if="topic.top" style="margin-top:5px;" class="light assertive-bg assertive-border tab">置顶</h3>
+                <h3 ng-if="topic.good&&!topic.top" style="margin-top:50px;" class="light positive-bg positive-border tab">精华</h3>
+                <!-- style -->
+                <h3 style="margin-top:7px;margin-left: 8px" class="author light-bg light-border" bo-bind="topic.author.loginname"></h3>  
+                <!-- ago not age  -->
+                <h3 style="margin-top:5px" class="ago-time" am-time-ago="topic.create_at"></h3> 
+            </a>
+        </div>
+        <!-- 上拉 -->
+        <!-- 一开始就会执行一次 -->
+        <ion-infinite-scroll ng-if="more" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+
+<!-- 
+topic = {
+    ID: "",
+    tab: "",
+    top: "",
+    good: "",
+    author: {
+        avatar_url: "",
+        loginname: ""
+    },
+    last_reply_at: "",
+    creat_at: ""
+}
+topicsData = {
+    accesstoken: "",
+    
+} -->
